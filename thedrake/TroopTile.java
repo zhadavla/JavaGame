@@ -1,53 +1,55 @@
 package thedrake;
+import java.util.ArrayList;
+import java.util.List;
+public class TroopTile implements Tile {
 
-import java.awt.*;
-import java.util.concurrent.RecursiveTask;
-
-public final class TroopTile implements Tile {
-    // Konstruktor
     private final Troop troop;
     private final PlayingSide side;
-    private final TroopFace face;
+    private final  TroopFace face;
 
-
-    public TroopTile(Troop troop, PlayingSide side, TroopFace face) {
+    public TroopTile(Troop troop, PlayingSide side, TroopFace face){
         this.troop = troop;
         this.side = side;
-        this.face = face;
+        this.face=face;
     }
 
-    // Vrací barvu, za kterou hraje jednotka na této dlaždici
-    public PlayingSide side() {
-        return this.side;
+    public PlayingSide side(){
+        return  side;
     }
 
-    // Vrací stranu, na kterou je jednotka otočena
-    public TroopFace face() {
-        return this.face;
+    public TroopFace face(){
+        return  face;
     }
 
-    // Jednotka, která stojí na této dlaždici
-    public Troop troop() {
-        return this.troop;
+    public Troop troop(){
+        return troop;
     }
 
-    // Vrací False, protože na dlaždici s jednotkou se nedá vstoupit
-    public boolean canStepOn() {
-        return false;
+    public boolean canStepOn(){
+        return  false;
     }
 
-    // Vrací True
-    public boolean hasTroop() {
-        return true;
+    public boolean hasTroop(){
+        return  true;
     }
 
-    // Vytvoří novou dlaždici, s jednotkou otočenou na opačnou stranu
-// (z rubu na líc nebo z líce na rub)
-    public TroopTile flipped() {
-        if (this.face == TroopFace.AVERS) {
-            return new TroopTile(this.troop, this.side, TroopFace.REVERS);
-        } else {
-            return new TroopTile(this.troop, this.side, TroopFace.AVERS);
+    public TroopTile flipped(){
+        TroopTile flip;
+        if(this.face == TroopFace.REVERS){
+            flip = new TroopTile(troop, side , TroopFace.AVERS);
+        }else{
+            flip = new TroopTile(troop, side , TroopFace.REVERS);
         }
+        return  flip;
+    }
+
+    public List<Move> movesFrom(BoardPos pos, GameState state) {
+        List<Move> result = new ArrayList<>();
+
+        for (TroopAction action : troop.actions(face)) {
+            result.addAll(action.movesFrom(pos, side, state));
+        }
+
+        return result;
     }
 }

@@ -13,9 +13,10 @@ public class BoardTroops {
     private final int guards;
 
     public BoardTroops(PlayingSide playingSide) {
-        this.playingSide = playingSide;
+        this.guards = 0;
         this.troopMap = Collections.emptyMap();
         this.leaderPosition = TilePos.OFF_BOARD;
+        this.playingSide = playingSide;
     }
 
     public BoardTroops(
@@ -23,67 +24,107 @@ public class BoardTroops {
             Map<BoardPos, TroopTile> troopMap,
             TilePos leaderPosition,
             int guards) {
-        // Místo pro váš kód
+        this.troopMap = troopMap;
+        this.playingSide = playingSide;
+        this.leaderPosition = leaderPosition;
+        this.guards = guards;
     }
 
     public Optional<TroopTile> at(TilePos pos) {
-        // Místo pro váš kód
+        TroopTile tile = troopMap.get(pos);
+        if (tile == null) {
+            return Optional.empty();
+        }
+        return Optional.of(tile);
     }
 
     public PlayingSide playingSide() {
-        // Místo pro váš kód
+        return playingSide;
     }
 
     public TilePos leaderPosition() {
-        // Místo pro váš kód
+        return leaderPosition;
     }
 
     public int guards() {
-        // Místo pro váš kód
+        return guards;
     }
 
     public boolean isLeaderPlaced() {
-        // Místo pro váš kód
+        return leaderPosition != TilePos.OFF_BOARD;
     }
 
     public boolean isPlacingGuards() {
-        // Místo pro váš kód
+        return isLeaderPlaced() && guards < 2;
     }
 
     public Set<BoardPos> troopPositions() {
-        // Místo pro váš kód
+        return troopMap.keySet();
     }
 
-    public BoardTroops placeTroop(Troop troop, BoardPos target) {
-        // Místo pro váš kód
+    public BoardTroops placeTroop(Troop troop, BoardPos target) throws IllegalArgumentException {
+        if (at(target).isPresent())
+            throw new IllegalArgumentException();
+
+        Map<BoardPos, TroopTile> newMap = new HashMap<>(troopMap);
+        TroopTile newTroop = new TroopTile(troop, playingSide, TroopFace.AVERS);
+        newMap.put(target, newTroop);
+
+        TilePos newLeaderPos;
+        int newGuards = guards;
+        if (!isLeaderPlaced())
+            newLeaderPos = target;
+        else
+            newLeaderPos = leaderPosition;
+        if (isPlacingGuards())
+            newGuards++;
+
+        return new BoardTroops(playingSide, newMap, newLeaderPos, newGuards);
     }
 
-    public BoardTroops troopStep(BoardPos origin, BoardPos target) {
-        // Místo pro váš kód
+    public BoardTroops troopStep(BoardPos origin, BoardPos target) throws IllegalStateException, IllegalArgumentException {
+        if (!isLeaderPlaced() || isPlacingGuards()) {
+            throw new IllegalStateException();
+        }
+        if (troopMap.containsKey(target) || !troopMap.containsKey(origin))
+            throw new IllegalArgumentException();
+
+        Map<BoardPos, TroopTile> newMap = new HashMap<>(troopMap);
+        newMap.put(target, newMap.remove(origin).flipped());
+        TilePos newLeaderPos;
+        if (leaderPosition.equals(origin))
+            newLeaderPos = target;
+        else
+            newLeaderPos = leaderPosition;
+        return new BoardTroops(playingSide, newMap, newLeaderPos, guards);
     }
 
     public BoardTroops troopFlip(BoardPos origin) {
-        if (!isLeaderPlaced()) {
-            throw new IllegalStateException(
-                    "Cannot move troops before the leader is placed.");
-        }
-
-        if (isPlacingGuards()) {
-            throw new IllegalStateException(
-                    "Cannot move troops before guards are placed.");
-        }
-
+        if (!isLeaderPlaced())
+            throw new IllegalStateException();
+        if (isPlacingGuards())
+            throw new IllegalStateException();
         if (!at(origin).isPresent())
             throw new IllegalArgumentException();
 
         Map<BoardPos, TroopTile> newTroops = new HashMap<>(troopMap);
-        TroopTile tile = newTroops.remove(origin);
-        newTroops.put(origin, tile.flipped());
-
+        newTroops.put(origin, newTroops.remove(origin).flipped());
         return new BoardTroops(playingSide(), newTroops, leaderPosition, guards);
     }
 
     public BoardTroops removeTroop(BoardPos target) {
-        // Místo pro váš kód
+        if (!isLeaderPlaced() || isPlacingGuards())
+            throw new IllegalStateException();
+        if (!at(target).isPresent())
+            throw new IllegalArgumentException();
+
+        Map<BoardPos, TroopTile> newMap = new HashMap<>(troopMap);
+        TilePos newLeaderPos;
+        if (leaderPosition.equals(target))
+            newLeaderPos = TilePos.OFF_BOARD;
+        else
+            newLeaderPos  = leaderPosition;
+        newMap.remove(target);
+        return new BoardTroops(playingSide, newMap, newLeaderPos, guards);
     }
 }
