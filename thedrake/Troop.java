@@ -1,8 +1,9 @@
 package thedrake;
 
+import java.io.PrintWriter;
 import java.util.List;
 
-public class Troop {
+public class Troop implements JSONSerializable {
     private final String name;
     private final Offset2D aversPivot;
     private final Offset2D reversPivot;
@@ -44,5 +45,10 @@ public class Troop {
         } else {
             return this.aversActions;
         }
+    }
+
+    @Override
+    public void toJSON(PrintWriter writer) {
+        writer.printf("\"%s\"", name);
     }
 }

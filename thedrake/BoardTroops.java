@@ -1,12 +1,9 @@
 package thedrake;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
+import java.io.PrintWriter;
+import java.util.*;
 
-public class BoardTroops {
+public class BoardTroops implements JSONSerializable {
     private final PlayingSide playingSide;
     private final Map<BoardPos, TroopTile> troopMap;
     private final TilePos leaderPosition;
@@ -126,5 +123,26 @@ public class BoardTroops {
             newLeaderPos  = leaderPosition;
         newMap.remove(target);
         return new BoardTroops(playingSide, newMap, newLeaderPos, guards);
+    }
+
+    @Override
+    public void toJSON(PrintWriter writer) {
+        writer.printf("{\"side\":\"%s\",\"leaderPosition\":", playingSide.toString());
+        leaderPosition.toJSON(writer);
+        writer.printf(",\"guards\":%d,\"troopMap\":{", guards);
+
+        Vector<BoardPos> sorted = new Vector<>(troopMap.keySet());
+        sorted.sort(Comparator.comparing(BoardPos::i).thenComparing(BoardPos::j));
+
+        for (int i = 0; i < sorted.size(); i++) {
+            BoardPos position = sorted.get(i);
+            TroopTile tile = troopMap.get(position);
+            writer.printf("\"%c%d\":", position.column(), position.row());
+            tile.toJSON(writer);
+            if (i < sorted.size() - 1)
+                writer.print(",");
+        }
+
+        writer.print("}}");
     }
 }

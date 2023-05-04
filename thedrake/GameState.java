@@ -1,5 +1,6 @@
 package thedrake;
 
+import java.io.PrintWriter;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -7,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class GameState {
+public class GameState implements JSONSerializable{
     private final Board board;
     private final PlayingSide sideOnTurn;
     private final Army blueArmy;
@@ -64,16 +65,6 @@ public class GameState {
 
         return blueArmy;
     }
-
-//    public Tile tileAt(TilePos pos) {
-//        for (Army army : new Army[]{armyOnTurn(), armyNotOnTurn()}) {
-//            Optional<TroopTile> maybeTroopTile = army.boardTroops().at(pos);
-//            if (maybeTroopTile.isPresent()) {
-//                return maybeTroopTile.get();
-//            }
-//        }
-//        return board.at(pos);
-//    }
 
     public Tile tileAt(TilePos pos) {
         // create an array of both armies
@@ -242,4 +233,18 @@ public class GameState {
 
         return new GameState(board, armyNotOnTurn, armyOnTurn, PlayingSide.ORANGE, result);
     }
+
+
+    public void toJSON(PrintWriter writer) {
+        writer.print("{\"result\":");
+        result.toJSON(writer);
+        writer.print(",\"board\":");
+        board.toJSON(writer);
+        writer.print(",\"blueArmy\":");
+        blueArmy.toJSON(writer);
+        writer.print(",\"orangeArmy\":");
+        orangeArmy.toJSON(writer);
+        writer.print("}");
+    }
+
 }

@@ -1,8 +1,9 @@
 package thedrake;
 
+import java.io.PrintWriter;
 import java.util.List;
 
-public interface TilePos {
+public interface TilePos  {
     public static final TilePos OFF_BOARD = new TilePos() {
 
         @Override
@@ -56,6 +57,14 @@ public interface TilePos {
         }
 
         @Override
+        public void toJSON(PrintWriter writer) {
+            if (this == OFF_BOARD)
+                writer.print("\"off-board\"");
+            else
+                writer.printf("\"%c%d\"", column(), row());
+        }
+
+        @Override
         public String toString() {
             return "off-board";
         }
@@ -80,4 +89,6 @@ public interface TilePos {
     public TilePos stepByPlayingSide(Offset2D dir, PlayingSide side);
 
     public boolean equalsTo(int i, int j);
+
+    void toJSON(PrintWriter writer);
 }

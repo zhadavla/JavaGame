@@ -1,46 +1,49 @@
 package thedrake;
+
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-public class TroopTile implements Tile {
+
+public class TroopTile implements Tile, JSONSerializable {
 
     private final Troop troop;
     private final PlayingSide side;
-    private final  TroopFace face;
+    private final TroopFace face;
 
-    public TroopTile(Troop troop, PlayingSide side, TroopFace face){
+    public TroopTile(Troop troop, PlayingSide side, TroopFace face) {
         this.troop = troop;
         this.side = side;
-        this.face=face;
+        this.face = face;
     }
 
-    public PlayingSide side(){
-        return  side;
+    public PlayingSide side() {
+        return side;
     }
 
-    public TroopFace face(){
-        return  face;
+    public TroopFace face() {
+        return face;
     }
 
-    public Troop troop(){
+    public Troop troop() {
         return troop;
     }
 
-    public boolean canStepOn(){
-        return  false;
+    public boolean canStepOn() {
+        return false;
     }
 
-    public boolean hasTroop(){
-        return  true;
+    public boolean hasTroop() {
+        return true;
     }
 
-    public TroopTile flipped(){
+    public TroopTile flipped() {
         TroopTile flip;
-        if(this.face == TroopFace.REVERS){
-            flip = new TroopTile(troop, side , TroopFace.AVERS);
-        }else{
-            flip = new TroopTile(troop, side , TroopFace.REVERS);
+        if (this.face == TroopFace.REVERS) {
+            flip = new TroopTile(troop, side, TroopFace.AVERS);
+        } else {
+            flip = new TroopTile(troop, side, TroopFace.REVERS);
         }
-        return  flip;
+        return flip;
     }
 
     public List<Move> movesFrom(BoardPos pos, GameState state) {
@@ -51,5 +54,10 @@ public class TroopTile implements Tile {
         }
 
         return result;
+    }
+
+    public void toJSON(PrintWriter writer) {
+        writer.printf("{\"troop\":\"%s\",\"side\":\"%s\",\"face\":\"%s\"}",
+                troop.name(), side.toString(), face.toString());
     }
 }
