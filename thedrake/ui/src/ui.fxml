@@ -3,39 +3,24 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
 <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
       prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="thedrake.ui.Controller">
-    <opaqueInsets>
-        <Insets bottom="50.0" left="50.0" right="50.0" top="50.0"/>
-    </opaqueInsets>
     <Label fx:id="theDrakeLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="241.0" prefWidth="517.0"
-           text="The Drake" textAlignment="CENTER">
-        <font>
-            <Font size="56.0"/>
-        </font>
+           styleClass="button-container" text="𝕿𝖍𝖊 𝕯𝖗𝖆𝖐𝖊" textAlignment="CENTER">
     </Label>
-    <VBox alignment="TOP_CENTER" prefHeight="322.0" prefWidth="800.0" styleClass="button-container">
-        <Button mnemonicParsing="false" styleClass="custom-button" prefHeight="49.0" prefWidth="412.0"
-                text="Two players" wrapText="true">
+    <VBox alignment="TOP_CENTER" prefHeight="322.0" prefWidth="800.0">
+        <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="412.0" wrapText="true">𝕿𝖜𝖔 𝖕𝖑𝖆𝖞𝖊𝖗𝖘
         </Button>
-        <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="412.0" text="Computer" textAlignment="CENTER">
-            <font>
-                <Font size="24.0"/>
-            </font>
+        <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="412.0" textAlignment="CENTER">𝕮𝖔𝖒𝖕𝖚𝖙𝖊𝖗 𝖌𝖆𝖒𝖊
         </Button>
-        <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="412.0" text="Online game" textAlignment="CENTER">
-            <font>
-                <Font size="24.0"/>
-            </font>
+        <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="412.0" textAlignment="CENTER">𝕺𝖓𝖑𝖎𝖓𝖊 𝖌𝖆𝖒𝖊
         </Button>
-        <Button id="exitButton" mnemonicParsing="false" onAction="#handleExitButton" prefHeight="37.0" prefWidth="411.0"
-                text="EXIT">
-            <font>
-                <Font size="24.0"/>
-            </font>
-        </Button>
+        <Button fx:id="exitButton" mnemonicParsing="false" onAction="#handleExitButton" prefHeight="48.0"
+                prefWidth="411.0">𝙀𝙓𝙄𝙏</Button>
+        <opaqueInsets>
+            <Insets right="20.0" top="20.0"/>
+        </opaqueInsets>
     </VBox>
 </VBox>
