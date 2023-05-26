@@ -1,0 +1,13 @@
+#theDrakeLabel {
+    -fx-font-size: 72px;
+    -fx-alignment: center;
+    -fx-font-family: "Arial", sans-serif;
+    -fx-text-fill: #000000;
+}
+
+.button {
+    -fx-font-size: 24px;
+    -fx-alignment: center;
+    -fx-font-family: "Arial", sans-serif;
+    -fx-background-color: #ffb900;
+}
