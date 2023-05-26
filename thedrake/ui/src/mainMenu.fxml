@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 
 <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-      prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+      prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:id="mainMenu"
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="thedrake.ui.Controller">
     <Label fx:id="theDrakeLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="241.0" prefWidth="517.0"
            styleClass="button-container" text="𝕿𝖍𝖊 𝕯𝖗𝖆𝖐𝖊" textAlignment="CENTER">

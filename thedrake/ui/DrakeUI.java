@@ -12,10 +12,10 @@ public class DrakeUI extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(DrakeUI.class.getResource("src/ui.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(DrakeUI.class.getResource("src/mainMenu.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
             stage.setTitle("The Drake!");
-            String css = Objects.requireNonNull(this.getClass().getResource("src/style.css")).toExternalForm();
+            String css = Objects.requireNonNull(this.getClass().getResource("src/mainMenu.css")).toExternalForm();
             scene.getStylesheets().add(css);
             stage.setScene(scene);
             stage.show();
