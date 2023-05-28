@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -19,19 +18,19 @@ import static thedrake.ui.TheDrakeApp.createSampleGameState;
 public class SwitchScenes extends Application {
     private Stage stage;
     private Scene scene1;
-
     private Scene scene2;
 
     @Override
     public void start(Stage stage) throws Exception {
 
         this.stage = stage;
+
         stage.setTitle("The Drake");
 
         scene1 = createScene1();
         scene2 = createScene2();
 
-        stage.setScene(scene1);
+        stage.setScene(scene2);
 
         stage.show();
     }
@@ -57,12 +56,15 @@ public class SwitchScenes extends Application {
 
     private Scene createScene2() throws IOException {
         BorderPane root = new BorderPane(new BoardView(createSampleGameState()));
+
+
         Button backButton = new Button("Back");
         backButton.setOnAction(e -> switchScenes(scene1));
 
-        root.setBottom(backButton);
+        root.setBottom(new StackViewBlue());
+        root.setTop(new StackViewBlue());
 
-        Scene scene = new Scene(root, 800, 600);
+        Scene scene = new Scene(root, 800, 800);
 
         scene.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ESCAPE) {
