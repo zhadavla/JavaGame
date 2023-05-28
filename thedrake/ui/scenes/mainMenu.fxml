@@ -11,7 +11,7 @@
            styleClass="button-container" text="𝕿𝖍𝖊 𝕯𝖗𝖆𝖐𝖊" textAlignment="CENTER">
     </Label>
     <VBox alignment="TOP_CENTER" prefHeight="322.0" prefWidth="800.0">
-        <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="412.0" wrapText="true">𝕿𝖜𝖔 𝖕𝖑𝖆𝖞𝖊𝖗𝖘
+        <Button fx:id="two_players" mnemonicParsing="false" prefHeight="49.0" prefWidth="412.0" wrapText="true">𝕿𝖜𝖔 𝖕𝖑𝖆𝖞𝖊𝖗𝖘
         </Button>
         <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="412.0" textAlignment="CENTER">𝕮𝖔𝖒𝖕𝖚𝖙𝖊𝖗 𝖌𝖆𝖒𝖊
         </Button>
