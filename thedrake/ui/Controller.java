@@ -10,8 +10,6 @@ public class Controller {
     @FXML
     private VBox mainMenu;
 
-
-
     @FXML
     protected void handleExitButton() {
         // close the window

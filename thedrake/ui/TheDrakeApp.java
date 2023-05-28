@@ -13,13 +13,17 @@ public class TheDrakeApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+       run(primaryStage);
+    }
+
+    static void run(Stage primaryStage) {
         BoardView boardView = new BoardView(createSampleGameState());
         primaryStage.setScene(new Scene(boardView));
         primaryStage.setTitle("The Drake");
         primaryStage.show();
     }
 
-    private static GameState createSampleGameState() {
+    static GameState createSampleGameState() {
         Board board = new Board(4);
         PositionFactory positionFactory = board.positionFactory();
         board = board.withTiles(new Board.TileAt(positionFactory.pos(1, 1), BoardTile.MOUNTAIN));

@@ -1,24 +1,24 @@
 package thedrake.ui;
 
+import com.sun.javafx.stage.EmbeddedWindow;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Objects;
 
+import static thedrake.ui.TheDrakeApp.createSampleGameState;
+
 public class DrakeUI extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+        SceneController sceneController = new SceneController();
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(DrakeUI.class.getResource("scenes/mainMenu.fxml"));
-            Scene scene = new Scene(fxmlLoader.load());
-            stage.setTitle("The Drake!");
-            String css = Objects.requireNonNull(this.getClass().getResource("scenes/mainMenu.css")).toExternalForm();
-            scene.getStylesheets().add(css);
-            stage.setScene(scene);
-            stage.show();
+            sceneController.run(stage);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
