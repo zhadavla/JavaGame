@@ -6,7 +6,7 @@
 
 <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
       prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:id="mainMenu"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="thedrake.ui.Controller">
+      xmlns:fx="http://javafx.com/fxml/1">
     <Label fx:id="theDrakeLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="241.0" prefWidth="517.0"
            styleClass="button-container" text="𝕿𝖍𝖊 𝕯𝖗𝖆𝖐𝖊" textAlignment="CENTER">
     </Label>
@@ -17,7 +17,7 @@
         </Button>
         <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="412.0" textAlignment="CENTER">𝕺𝖓𝖑𝖎𝖓𝖊 𝖌𝖆𝖒𝖊
         </Button>
-        <Button fx:id="exitButton" mnemonicParsing="false" onAction="#handleExitButton" prefHeight="48.0"
+        <Button fx:id="exitButton" mnemonicParsing="false" prefHeight="48.0"
                 prefWidth="411.0">𝙀𝙓𝙄𝙏</Button>
         <opaqueInsets>
             <Insets right="20.0" top="20.0"/>
