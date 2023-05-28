@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -20,7 +21,6 @@ public class SwitchScenes extends Application {
     private Scene scene1;
 
     private Scene scene2;
-
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -56,8 +56,13 @@ public class SwitchScenes extends Application {
     }
 
     private Scene createScene2() throws IOException {
-        BoardView boardView = new BoardView(createSampleGameState());
-        Scene scene = new Scene(boardView);
+        BorderPane root = new BorderPane(new BoardView(createSampleGameState()));
+        Button backButton = new Button("Back");
+        backButton.setOnAction(e -> switchScenes(scene1));
+
+        root.setBottom(backButton);
+
+        Scene scene = new Scene(root, 800, 600);
 
         scene.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ESCAPE) {
