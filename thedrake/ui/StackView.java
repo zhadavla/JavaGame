@@ -83,7 +83,7 @@ public class StackView extends HBox {
         }
     }
 
-    private void removePlaced(PlayingSide playingSide) {
+    public void removePlaced(PlayingSide playingSide) {
         System.out.println("in there");
         if (playingSide == PlayingSide.BLUE) {
             getChildren().remove(blueUnits.get(0));
