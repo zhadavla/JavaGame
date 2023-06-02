@@ -60,8 +60,12 @@ public class BoardView extends GridPane implements TileViewContext {
     @Override
     public void executeMove(Move move) {
         if (isPlacing) {
-
             placeFromStack(move);
+            System.out.println(gameState.sideOnTurn());
+            showMoves(validMoves.movesFromStack());
+            gameState = move.execute(gameState);
+            validMoves = new ValidMoves(gameState);
+            clearMoves();
         }
 //        selected.unselect();
 //        selected = null;
@@ -72,8 +76,18 @@ public class BoardView extends GridPane implements TileViewContext {
     }
 
     public void placeFromStack(Move move) {
-        add(new UnitView(currentBlue, PlayingSide.BLUE), move.target().i(), move.target().j() + 3);
-        System.out.println(currentBlue);
+        System.out.println("------- position ----------");
+        System.out.println(3 - move.target().j());
+        System.out.println("---------current orange--------");
+        System.out.println(currentOrange);
+        System.out.println("---------------------------");
+        if (gameState.sideOnTurn() == PlayingSide.BLUE)
+            add(new TileView(null, new TroopTile(new Troop(currentBlue, null, null, null),
+                    PlayingSide.BLUE, TroopFace.AVERS), null), move.target().i(), 3 - move.target().j());
+        else if (gameState.sideOnTurn() == PlayingSide.ORANGE)
+            add(new TileView(null, new TroopTile(new Troop(currentOrange, null, null, null),
+                    PlayingSide.ORANGE, TroopFace.AVERS), null), move.target().i(), 3 - move.target().j());
+
     }
 
     private void updateTiles() {
@@ -96,8 +110,17 @@ public class BoardView extends GridPane implements TileViewContext {
             tileViewAt(move.target()).setMove(move);
     }
 
+
+    public void showPossibleMoves() {
+        showMoves(validMoves.movesFromStack());
+    }
+
     private TileView tileViewAt(BoardPos target) {
         int index = (3 - target.j()) * 4 + target.i();
         return (TileView) getChildren().get(index);
+    }
+
+    public GameState getGameState() {
+        return gameState;
     }
 }

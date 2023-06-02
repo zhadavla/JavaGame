@@ -19,10 +19,13 @@ public class StackView extends HBox {
     private List<String> orangeUnitsNames;
 
     public List<String> getBlueUnitsNames() {
+
         return blueUnitsNames;
     }
 
     public List<String> getOrangeUnitsNames() {
+        for (String s: orangeUnitsNames)
+            System.out.println(s);
         return orangeUnitsNames;
     }
 
@@ -52,12 +55,6 @@ public class StackView extends HBox {
         setSpacing(5);
         setPadding(new Insets(15));
         setAlignment(Pos.CENTER);
-
-        setOnMouseClicked(e -> {
-            select();
-            System.out.println("Click Stack" + playingSide);
-            removePlaced(playingSide);
-        });
 
         update(playingSide);
     }

@@ -33,30 +33,36 @@ public class GameView{
         root.setBottom(blueStack);
 
         this.orangeStack = new StackView(PlayingSide.ORANGE);
-//        orangeStack.setOnMouseClicked(e -> onClickOrange());
+        orangeStack.setOnMouseClicked(e -> onClickOrange());
         root.setTop(orangeStack);
 
         moveImage = new ImageView(String.valueOf(getClass().getResource("/assets/move.png")));
 
-        showPossibleMoves();
+//        showPossibleMoves();
     }
 
     private void onClickBlue() {
         System.out.println("No way..");
-
         System.out.println("Current blue stack " + blueStack.getBlueUnitsNames().get(0));
+
+        boardView.showPossibleMoves();
         boardView.setCurrentBlue(blueStack.getBlueUnitsNames().get(0));
-        blueStack.getBlueUnitsNames().remove(0);
+        validMoves = new ValidMoves(boardView.getGameState());
+
         blueStack.removePlaced(PlayingSide.BLUE);
     }
 
-//    private void onClickOrange() {
-//        System.out.println("No way..");
-//        blueStack.removePlaced(PlayingSide.ORANGE);
-//        System.out.println("Current orange stack " + orangeStack.getOrangeUnitsNames().get(0));
-//        boardView.setCurrentBlue(orangeStack.getOrangeUnitsNames().get(0));
-//        orangeStack.getOrangeUnitsNames().remove(0);
-//    }
+    private void onClickOrange() {
+        System.out.println("No way..");
+        System.out.println("Current blue stack " + orangeStack.getOrangeUnitsNames().get(0));
+
+        boardView.showPossibleMoves();
+        System.out.println("SIDE TO TURN: " + boardView.getGameState().sideOnTurn());
+
+        boardView.setCurrentOrange(orangeStack.getOrangeUnitsNames().get(0));
+
+        orangeStack.removePlaced(PlayingSide.ORANGE);
+    }
 
     Scene getScene() {
         return new Scene(root, 800, 800);
