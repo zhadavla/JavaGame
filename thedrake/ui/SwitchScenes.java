@@ -8,11 +8,10 @@ import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import thedrake.game_logic.PlayingSide;
 
 import java.io.IOException;
 import java.util.Objects;
-
-import thedrake.game_logic.*;
 
 import static thedrake.ui.TheDrakeApp.createSampleGameState;
 
@@ -59,12 +58,8 @@ public class SwitchScenes extends Application {
     private Scene createScene2() throws IOException {
         BorderPane root = new BorderPane(new BoardView(createSampleGameState()));
 
-
-        Button backButton = new Button("Back");
-        backButton.setOnAction(e -> switchScenes(scene1));
-
-        root.setBottom(new StackViewBlue());
-        root.setTop(new StackViewBlue());
+        root.setBottom(new StackView(PlayingSide.BLUE));
+        root.setTop(new StackView(PlayingSide.ORANGE));
 
         Scene scene = new Scene(root, 800, 800);
 
