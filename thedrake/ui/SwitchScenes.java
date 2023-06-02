@@ -56,12 +56,8 @@ public class SwitchScenes extends Application {
     }
 
     private Scene createScene2() throws IOException {
-        BorderPane root = new BorderPane(new BoardView(createSampleGameState()));
-
-        root.setBottom(new StackView(PlayingSide.BLUE));
-        root.setTop(new StackView(PlayingSide.ORANGE));
-
-        Scene scene = new Scene(root, 800, 800);
+        GameView gameView = new GameView();
+        Scene scene = gameView.getScene();
 
         scene.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ESCAPE) {

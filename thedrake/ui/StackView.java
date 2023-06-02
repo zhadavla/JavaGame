@@ -13,8 +13,6 @@ import java.util.List;
 
 public class StackView extends HBox {
     private List<String> names;
-
-    int i = 0;
     private List<UnitView> blueUnits;
     private List<UnitView> orangeUnits;
     private final Border blackBorder = new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(3)));
@@ -71,11 +69,11 @@ public class StackView extends HBox {
     private void removePlaced(PlayingSide playingSide) {
         System.out.println("in there");
         if (playingSide == PlayingSide.BLUE) {
-            getChildren().remove(blueUnits.get(i));
-            blueUnits.remove(i);
+            getChildren().remove(blueUnits.get(0));
+            blueUnits.remove(0);
         } else {
-            getChildren().remove(orangeUnits.get(i));
-            orangeUnits.remove(i);
+            getChildren().remove(orangeUnits.get(0));
+            orangeUnits.remove(0);
         }
     }
 }
