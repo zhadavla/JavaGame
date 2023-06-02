@@ -56,7 +56,7 @@ public class SwitchScenes extends Application {
     }
 
     private Scene createScene2() throws IOException {
-        GameView gameView = new GameView();
+        GameView gameView = new GameView(createSampleGameState());
         Scene scene = gameView.getScene();
 
         scene.setOnKeyPressed(event -> {

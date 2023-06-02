@@ -16,7 +16,7 @@ public class TileView extends Pane {
     private TileBackgrounds backgrounds = new TileBackgrounds();
 
     private Border selectBorder = new Border(
-        new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(3)));
+            new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(3)));
 
     private TileViewContext tileViewContext;
 
@@ -40,9 +40,11 @@ public class TileView extends Pane {
     }
 
     private void onClick() {
-        if (move != null)
+        if (move != null) {
+            System.out.println(move.target().i() + " " +  move.target().j());
             tileViewContext.executeMove(move);
-        else if (tile.hasTroop())
+        }
+        else
             select();
     }
 

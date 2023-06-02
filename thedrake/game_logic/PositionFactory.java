@@ -26,11 +26,11 @@ public class PositionFactory {
         return pos(pos.charAt(0), Integer.parseInt(pos.substring(1)));
     }
 
-    private int iFromColumn(char column) {
+    public int iFromColumn(char column) {
         return column - 'a';
     }
 
-    private int jFromRow(int row) {
+    public int jFromRow(int row) {
         return row - 1;
     }
 }

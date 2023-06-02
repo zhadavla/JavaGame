@@ -1,6 +1,7 @@
 package thedrake.ui;
 
 import java.util.List;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -12,8 +13,20 @@ public class BoardView extends GridPane implements TileViewContext {
     private GameState gameState;
 
     private ValidMoves validMoves;
-
     private TileView selected;
+
+    public void setCurrentBlue(String currentBlue) {
+        this.currentBlue = currentBlue;
+    }
+
+    public void setCurrentOrange(String currentOrange) {
+        this.currentOrange = currentOrange;
+    }
+
+    private String currentBlue;
+    private String currentOrange;
+
+    private boolean isPlacing = true;
 
     public BoardView(GameState gameState) {
         this.gameState = gameState;
@@ -46,12 +59,21 @@ public class BoardView extends GridPane implements TileViewContext {
 
     @Override
     public void executeMove(Move move) {
-        selected.unselect();
-        selected = null;
-        clearMoves();
-        gameState = move.execute(gameState);
-        validMoves = new ValidMoves(gameState);
-        updateTiles();
+        if (isPlacing) {
+
+            placeFromStack(move);
+        }
+//        selected.unselect();
+//        selected = null;
+//        clearMoves();
+//        gameState = move.execute(gameState);
+//        validMoves = new ValidMoves(gameState);
+//        updateTiles();
+    }
+
+    public void placeFromStack(Move move) {
+        add(new UnitView(currentBlue, PlayingSide.BLUE), move.target().i(), move.target().j() + 3);
+        System.out.println(currentBlue);
     }
 
     private void updateTiles() {
@@ -69,7 +91,7 @@ public class BoardView extends GridPane implements TileViewContext {
         }
     }
 
-    private void showMoves(List<Move> moveList) {
+    public void showMoves(List<Move> moveList) {
         for (Move move : moveList)
             tileViewAt(move.target()).setMove(move);
     }
