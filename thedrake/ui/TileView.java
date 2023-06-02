@@ -3,9 +3,9 @@ package thedrake.ui;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import thedrake.BoardPos;
-import thedrake.Move;
-import thedrake.Tile;
+import thedrake.game_logic.BoardPos;
+import thedrake.game_logic.Move;
+import thedrake.game_logic.Tile;
 
 public class TileView extends Pane {
 

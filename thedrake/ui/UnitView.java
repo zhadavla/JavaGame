@@ -4,8 +4,8 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.Pane;
-import thedrake.PlayingSide;
-import thedrake.TroopFace;
+import thedrake.game_logic.PlayingSide;
+import thedrake.game_logic.TroopFace;
 
 public class UnitView extends Pane {
     public UnitView(String name) {

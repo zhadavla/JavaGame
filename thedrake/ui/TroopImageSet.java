@@ -1,8 +1,8 @@
 package thedrake.ui;
 
 import javafx.scene.image.Image;
-import thedrake.PlayingSide;
-import thedrake.TroopFace;
+import thedrake.game_logic.PlayingSide;
+import thedrake.game_logic.TroopFace;
 
 import java.io.InputStream;
 

@@ -12,8 +12,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
+import thedrake.game_logic.*;
 
 import static thedrake.ui.TheDrakeApp.createSampleGameState;
+
 
 public class SwitchScenes extends Application {
     private Stage stage;

@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.HBox;
-import thedrake.*;
+import thedrake.game_logic.*;
 
 import java.lang.reflect.Array;
 import java.util.List;

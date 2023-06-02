@@ -1,6 +1,6 @@
 package thedrake.ui;
 
-import thedrake.*;
+import thedrake.game_logic.*;
 
 import java.util.ArrayList;
 import java.util.Collections;

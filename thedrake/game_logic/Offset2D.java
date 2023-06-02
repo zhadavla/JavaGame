@@ -1,4 +1,4 @@
-package thedrake;
+package thedrake.game_logic;
 
 public class Offset2D {
     public final int x;

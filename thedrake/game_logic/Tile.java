@@ -1,4 +1,4 @@
-package thedrake;
+package thedrake.game_logic;
 
 import java.util.List;
 

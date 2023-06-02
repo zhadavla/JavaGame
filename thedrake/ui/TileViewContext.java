@@ -1,6 +1,6 @@
 package thedrake.ui;
 
-import thedrake.Move;
+import thedrake.game_logic.Move;
 
 public interface TileViewContext {
 
