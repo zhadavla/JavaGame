@@ -1,8 +1,11 @@
 package thedrake.ui;
 
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import org.w3c.dom.css.CSS2Properties;
+import thedrake.game_logic.GameResult;
 import thedrake.game_logic.GameState;
 import thedrake.game_logic.PlayingSide;
 
@@ -66,5 +69,9 @@ public class GameView {
 
     Scene getScene() {
         return new Scene(root, 800, 800);
+    }
+
+    public BorderPane getRoot() {
+        return root;
     }
 }

@@ -3,11 +3,11 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="261.0" prefWidth="272.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="thedrake.ui.Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="268.0" prefWidth="211.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="thedrake.ui.Controller">
    <children>
-      <ImageView fx:id="sword" fitHeight="350.0" fitWidth="236.0" layoutX="29.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="sword" fitHeight="248.0" fitWidth="249.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@pngwing.com.png" />
+            <Image url="@sword.png" />
          </image></ImageView>
    </children>
 </Pane>

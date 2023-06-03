@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import thedrake.game_logic.*;
 
@@ -36,9 +37,8 @@ public class BoardView extends GridPane implements TileViewContext {
         for (int y = 0; y < 4; y++) {
             for (int x = 0; x < 4; x++) {
                 BoardPos boardPos = positionFactory.pos(x, 3 - y);
-                if (gameState.tileAt(boardPos)!=null)
-                    System.out.println(gameState.tileAt(boardPos));
-                add(new TileView(boardPos, gameState.tileAt(boardPos), this), x, y);
+                TileView tileView = new TileView(boardPos, gameState.tileAt(boardPos), this);
+                add(tileView, x, y);
             }
         }
 
@@ -85,6 +85,41 @@ public class BoardView extends GridPane implements TileViewContext {
             validMoves = new ValidMoves(gameState);
             updateTiles();
         }
+
+        if (gameState.result() == GameResult.VICTORY) {
+            showVictory();
+        }
+    }
+
+    private void showVictory() {
+
+        if (gameState.sideOnTurn() == PlayingSide.ORANGE) {
+            for (Node node : getChildren()) {
+                if (node instanceof TileView tileView) {
+                    tileView.setStyle("-fx-background-color: #0058ff;");
+                }
+            }
+        } else {
+            for (Node node : getChildren()) {
+                if (node instanceof TileView tileView) {
+                    tileView.setStyle("-fx-background-color: #ff8400;");
+                }
+            }
+        }
+        Label labelW = new Label("W");
+        Label labelI = new Label("I");
+        Label labelN = new Label("N");
+        Label label = new Label("!");
+        add(labelW, 1, 0);
+        add(labelI, 1, 1);
+        add(labelN, 1, 2);
+        add(label, 1, 3);
+    }
+
+
+    private void printText(int row, int column, String text) {
+        Label label = new Label(text);
+        add(label, column, row);
     }
 
     public void setStackBlue(StackView stackBlue) {

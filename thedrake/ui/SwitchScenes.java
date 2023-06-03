@@ -6,6 +6,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import thedrake.game_logic.Board;
@@ -75,7 +78,29 @@ public class SwitchScenes extends Application {
 
 
         this.gameView = new GameView(new StandardDrakeSetup().startState(board));
+
+        Button exitButton = new Button("Exit");
+        exitButton.setId("button-exit");
+        exitButton.setOnAction(e -> switchScenes(scene1));
+
+        Button rematchButton = new Button("Rematch");
+        rematchButton.getStylesheets().add("rematchButton");
+        rematchButton.setOnAction(e -> {
+            try {
+                switchScenes(createScene2());
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
+        VBox vBox = new VBox(exitButton, rematchButton);
+        vBox.getStyleClass().add("vbox");
+        gameView.getRoot().setRight(vBox);
+
         Scene scene = gameView.getScene();
+
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("scenes/game.css")).toExternalForm());
+
 
         scene.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ESCAPE) {
