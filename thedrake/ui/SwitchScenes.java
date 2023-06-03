@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -25,18 +26,18 @@ import static thedrake.ui.TheDrakeApp.createSampleGameState;
 public class SwitchScenes extends Application {
     private Stage stage;
     private Scene scene1;
-    private Scene scene2;
-    private GameView gameView;
 
     @Override
     public void start(Stage stage) throws Exception {
+        Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("scenes/weapon.png")));
+        stage.getIcons().add(icon);
 
         this.stage = stage;
 
         stage.setTitle("The Drake");
 
         scene1 = createScene1();
-        scene2 = createScene2();
+        Scene scene2 = createScene2();
 
         stage.setScene(scene1);
 
@@ -77,7 +78,7 @@ public class SwitchScenes extends Application {
         board = board.withTiles(new Board.TileAt(positionFactory.pos(1, 1), BoardTile.MOUNTAIN));
 
 
-        this.gameView = new GameView(new StandardDrakeSetup().startState(board));
+        GameView gameView = new GameView(new StandardDrakeSetup().startState(board));
 
         Button exitButton = new Button("Exit");
         exitButton.setId("button-exit");
