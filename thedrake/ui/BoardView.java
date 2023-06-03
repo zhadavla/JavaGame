@@ -11,9 +11,9 @@ import thedrake.game_logic.*;
 public class BoardView extends GridPane implements TileViewContext {
 
     private GameState gameState;
-
     private ValidMoves validMoves;
     private TileView selected;
+    private boolean stackPressed = false;
 
     public void setCurrentBlue(String currentBlue) {
         this.currentBlue = currentBlue;
@@ -59,21 +59,27 @@ public class BoardView extends GridPane implements TileViewContext {
 
     @Override
     public void executeMove(Move move) {
-        if (isPlacing) {
-            placeFromStack(move);
-            System.out.println(gameState.sideOnTurn());
-            showMoves(validMoves.movesFromStack());
+//        if (stackPressed) {
+//            showMoves(validMoves.movesFromStack());
+//            gameState = move.execute(gameState);
+//            validMoves = new ValidMoves(gameState);
+//            clearMoves();
+//            updateTiles();
+//            stackPressed = false;
+//        } else {
+            selected.unselect();
+            selected = null;
+            clearMoves();
             gameState = move.execute(gameState);
             validMoves = new ValidMoves(gameState);
-            clearMoves();
-        }
-//        selected.unselect();
-//        selected = null;
-//        clearMoves();
-//        gameState = move.execute(gameState);
-//        validMoves = new ValidMoves(gameState);
-//        updateTiles();
+            updateTiles();
+//        }
     }
+
+    public void setIsStackPressed(boolean b) {
+        this.stackPressed = b;
+    }
+
 
     public void placeFromStack(Move move) {
         System.out.println("------- position ----------");
@@ -81,13 +87,20 @@ public class BoardView extends GridPane implements TileViewContext {
         System.out.println("---------current orange--------");
         System.out.println(currentOrange);
         System.out.println("---------------------------");
-        if (gameState.sideOnTurn() == PlayingSide.BLUE)
-            add(new TileView(null, new TroopTile(new Troop(currentBlue, null, null, null),
-                    PlayingSide.BLUE, TroopFace.AVERS), null), move.target().i(), 3 - move.target().j());
-        else if (gameState.sideOnTurn() == PlayingSide.ORANGE)
-            add(new TileView(null, new TroopTile(new Troop(currentOrange, null, null, null),
-                    PlayingSide.ORANGE, TroopFace.AVERS), null), move.target().i(), 3 - move.target().j());
 
+        PositionFactory positionFactory = gameState.board().positionFactory();
+
+        BoardPos boardPos = positionFactory.pos(move.target().i(), 3 - move.target().j());
+
+//        if (gameState.sideOnTurn() == PlayingSide.BLUE)
+//            add(new TileView(boardPos, new TroopTile(new Troop(currentBlue, null, null, null),
+//                            PlayingSide.BLUE, TroopFace.AVERS), this),
+//                    move.target().i(), 3 - move.target().j());
+//        else if (gameState.sideOnTurn() == PlayingSide.ORANGE)
+//            add(new TileView(boardPos, new TroopTile(new Troop(currentOrange, null, null, null),
+//                            PlayingSide.ORANGE, TroopFace.AVERS), this),
+//                    move.target().i(), 3 - move.target().j());
+//        updateTiles();
     }
 
     private void updateTiles() {

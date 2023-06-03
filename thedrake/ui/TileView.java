@@ -4,6 +4,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import thedrake.game_logic.BoardPos;
+import thedrake.game_logic.GameState;
 import thedrake.game_logic.Move;
 import thedrake.game_logic.Tile;
 
@@ -19,7 +20,6 @@ public class TileView extends Pane {
             new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(3)));
 
     private TileViewContext tileViewContext;
-
     private Move move;
 
     private final ImageView moveImage;
@@ -41,8 +41,9 @@ public class TileView extends Pane {
 
     private void onClick() {
         if (move != null) {
-            System.out.println(move.target().i() + " " +  move.target().j());
+//            System.out.println(move.target().i() + " " +  move.target().j());
             tileViewContext.executeMove(move);
+//            unselect();
         }
         else
             select();
