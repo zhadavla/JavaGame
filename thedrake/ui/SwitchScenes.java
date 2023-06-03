@@ -8,6 +8,11 @@ import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import thedrake.game_logic.Board;
+import thedrake.game_logic.BoardTile;
+import thedrake.game_logic.PositionFactory;
+import thedrake.game_logic.StandardDrakeSetup;
+
 import java.io.IOException;
 import java.util.Objects;
 
@@ -18,6 +23,7 @@ public class SwitchScenes extends Application {
     private Stage stage;
     private Scene scene1;
     private Scene scene2;
+    private GameView gameView;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -45,7 +51,15 @@ public class SwitchScenes extends Application {
                 .toExternalForm());
 
         Button twoPlayersButton = (Button) root.lookup("#two_players");
-        twoPlayersButton.setOnAction(e -> switchScenes(scene2));
+
+
+        twoPlayersButton.setOnAction(e -> {
+            try {
+                switchScenes(createScene2());
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
 
         Button exitButton = (Button) root.lookup("#exitButton");
         exitButton.setOnAction(e -> System.exit(0));
@@ -53,8 +67,14 @@ public class SwitchScenes extends Application {
         return scene;
     }
 
+
     private Scene createScene2() throws IOException {
-        GameView gameView = new GameView(createSampleGameState());
+        Board board = new Board(4);
+        PositionFactory positionFactory = board.positionFactory();
+        board = board.withTiles(new Board.TileAt(positionFactory.pos(1, 1), BoardTile.MOUNTAIN));
+
+
+        this.gameView = new GameView(new StandardDrakeSetup().startState(board));
         Scene scene = gameView.getScene();
 
         scene.setOnKeyPressed(event -> {

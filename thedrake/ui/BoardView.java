@@ -36,6 +36,8 @@ public class BoardView extends GridPane implements TileViewContext {
         for (int y = 0; y < 4; y++) {
             for (int x = 0; x < 4; x++) {
                 BoardPos boardPos = positionFactory.pos(x, 3 - y);
+                if (gameState.tileAt(boardPos)!=null)
+                    System.out.println(gameState.tileAt(boardPos));
                 add(new TileView(boardPos, gameState.tileAt(boardPos), this), x, y);
             }
         }
