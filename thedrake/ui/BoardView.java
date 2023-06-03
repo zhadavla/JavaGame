@@ -10,23 +10,16 @@ import thedrake.game_logic.*;
 
 public class BoardView extends GridPane implements TileViewContext {
 
+    private StackView stackBlue;
+
+    private StackView stackOrange;
+
     private GameState gameState;
+
     private ValidMoves validMoves;
+
     private TileView selected;
     private boolean stackPressed = false;
-
-    public void setCurrentBlue(String currentBlue) {
-        this.currentBlue = currentBlue;
-    }
-
-    public void setCurrentOrange(String currentOrange) {
-        this.currentOrange = currentOrange;
-    }
-
-    private String currentBlue;
-    private String currentOrange;
-
-    private boolean isPlacing = true;
 
     public BoardView(GameState gameState) {
         this.gameState = gameState;
@@ -60,6 +53,14 @@ public class BoardView extends GridPane implements TileViewContext {
     @Override
     public void executeMove(Move move) {
         if (stackPressed) {
+            if (getGameState().sideOnTurn() == PlayingSide.BLUE) {
+                stackBlue.removePlaced(gameState.sideOnTurn());
+                stackBlue.setBorder(null);
+            } else {
+                stackOrange.removePlaced(gameState.sideOnTurn());
+                stackOrange.setBorder(null);
+            }
+
             showMoves(validMoves.movesFromStack());
             gameState = move.execute(gameState);
             validMoves = new ValidMoves(gameState);
@@ -76,31 +77,16 @@ public class BoardView extends GridPane implements TileViewContext {
         }
     }
 
-    public void setIsStackPressed(boolean b) {
-        this.stackPressed = b;
+    public void setStackBlue(StackView stackBlue) {
+        this.stackBlue = stackBlue;
     }
 
+    public void setStackOrange(StackView stackOrange) {
+        this.stackOrange = stackOrange;
+    }
 
-    public void placeFromStack(Move move) {
-        System.out.println("------- position ----------");
-        System.out.println(3 - move.target().j());
-        System.out.println("---------current orange--------");
-        System.out.println(currentOrange);
-        System.out.println("---------------------------");
-
-        PositionFactory positionFactory = gameState.board().positionFactory();
-
-        BoardPos boardPos = positionFactory.pos(move.target().i(), 3 - move.target().j());
-
-//        if (gameState.sideOnTurn() == PlayingSide.BLUE)
-//            add(new TileView(boardPos, new TroopTile(new Troop(currentBlue, null, null, null),
-//                            PlayingSide.BLUE, TroopFace.AVERS), this),
-//                    move.target().i(), 3 - move.target().j());
-//        else if (gameState.sideOnTurn() == PlayingSide.ORANGE)
-//            add(new TileView(boardPos, new TroopTile(new Troop(currentOrange, null, null, null),
-//                            PlayingSide.ORANGE, TroopFace.AVERS), this),
-//                    move.target().i(), 3 - move.target().j());
-//        updateTiles();
+    public void setIsStackPressed(boolean b) {
+        this.stackPressed = b;
     }
 
     private void updateTiles() {
@@ -122,7 +108,6 @@ public class BoardView extends GridPane implements TileViewContext {
         for (Move move : moveList)
             tileViewAt(move.target()).setMove(move);
     }
-
 
     public void showPossibleMoves() {
         showMoves(validMoves.movesFromStack());

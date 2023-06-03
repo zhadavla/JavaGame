@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Stack;
 
 public class StackView extends HBox {
-    private List<String> names;
     private List<UnitView> blueUnits;
     private List<String> blueUnitsNames;
     private List<String> orangeUnitsNames;

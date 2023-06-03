@@ -6,10 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import thedrake.game_logic.PlayingSide;
-
 import java.io.IOException;
 import java.util.Objects;
 
@@ -31,7 +28,7 @@ public class SwitchScenes extends Application {
         scene1 = createScene1();
         scene2 = createScene2();
 
-        stage.setScene(scene2);
+        stage.setScene(scene1);
 
         stage.show();
     }
@@ -66,7 +63,6 @@ public class SwitchScenes extends Application {
         });
         return scene;
     }
-
 
     public void switchScenes(Scene scene) {
         stage.setScene(scene);
