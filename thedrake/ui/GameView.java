@@ -1,12 +1,12 @@
 package thedrake.ui;
 
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import thedrake.game_logic.GameState;
 import thedrake.game_logic.PlayingSide;
+
+import java.io.IOException;
 
 public class GameView {
     private final Border selectBorder = new Border(
@@ -15,9 +15,9 @@ public class GameView {
     private final StackView orangeStack;
     private final StackView blueStack;
     private final BorderPane root;
+    private WhoseTurnView whoseTurnView;
 
-    public GameView(GameState gameState) {
-//        this.validMoves = new ValidMoves(gameState);
+    public GameView(GameState gameState) throws IOException {
 
         this.boardView = new BoardView(gameState);
 
@@ -31,10 +31,13 @@ public class GameView {
         orangeStack.setOnMouseClicked(e -> onClickOrange());
         root.setTop(orangeStack);
 
+        this.whoseTurnView = new WhoseTurnView();
+
+        boardView.setWhoseTurnView(whoseTurnView);
         boardView.setStackOrange(orangeStack);
         boardView.setStackBlue(blueStack);
 
-        ImageView moveImage = new ImageView(String.valueOf(getClass().getResource("/assets/move.png")));
+        root.setLeft(whoseTurnView);
     }
 
     private void onClickBlue() {
@@ -45,6 +48,8 @@ public class GameView {
 
         boardView.setIsStackPressed(true);
         boardView.showPossibleMoves();
+
+
     }
 
     private void onClickOrange() {
@@ -55,6 +60,8 @@ public class GameView {
 
         boardView.setIsStackPressed(true);
         boardView.showPossibleMoves();
+
+
     }
 
     Scene getScene() {

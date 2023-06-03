@@ -2,6 +2,7 @@ package thedrake.ui;
 
 import java.util.List;
 
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -20,6 +21,12 @@ public class BoardView extends GridPane implements TileViewContext {
 
     private TileView selected;
     private boolean stackPressed = false;
+
+    public void setWhoseTurnView(WhoseTurnView whoseTurnView) {
+        this.whoseTurnView = whoseTurnView;
+    }
+
+    private WhoseTurnView whoseTurnView;
 
     public BoardView(GameState gameState) {
         this.gameState = gameState;
@@ -52,6 +59,7 @@ public class BoardView extends GridPane implements TileViewContext {
 
     @Override
     public void executeMove(Move move) {
+        whoseTurnView.getController().rotate();
         if (stackPressed) {
             if (getGameState().sideOnTurn() == PlayingSide.BLUE) {
                 stackBlue.removePlaced(gameState.sideOnTurn());
