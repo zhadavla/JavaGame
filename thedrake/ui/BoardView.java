@@ -59,21 +59,21 @@ public class BoardView extends GridPane implements TileViewContext {
 
     @Override
     public void executeMove(Move move) {
-//        if (stackPressed) {
-//            showMoves(validMoves.movesFromStack());
-//            gameState = move.execute(gameState);
-//            validMoves = new ValidMoves(gameState);
-//            clearMoves();
-//            updateTiles();
-//            stackPressed = false;
-//        } else {
+        if (stackPressed) {
+            showMoves(validMoves.movesFromStack());
+            gameState = move.execute(gameState);
+            validMoves = new ValidMoves(gameState);
+            clearMoves();
+            updateTiles();
+            stackPressed = false;
+        } else {
             selected.unselect();
             selected = null;
             clearMoves();
             gameState = move.execute(gameState);
             validMoves = new ValidMoves(gameState);
             updateTiles();
-//        }
+        }
     }
 
     public void setIsStackPressed(boolean b) {

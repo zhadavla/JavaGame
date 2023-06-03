@@ -41,11 +41,9 @@ public class TileView extends Pane {
 
     private void onClick() {
         if (move != null) {
-//            System.out.println(move.target().i() + " " +  move.target().j());
             tileViewContext.executeMove(move);
-//            unselect();
         }
-        else
+        else if (tile.hasTroop())
             select();
     }
 
