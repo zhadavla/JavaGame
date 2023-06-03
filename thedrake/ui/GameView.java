@@ -44,7 +44,8 @@ public class GameView {
     }
 
     private void onClickBlue() {
-        if (boardView.getGameState().sideOnTurn() == PlayingSide.ORANGE)
+        if (boardView.getGameState().sideOnTurn() == PlayingSide.ORANGE
+        || boardView.getGameState().result() == GameResult.VICTORY)
             return;
 
         blueStack.setBorder(selectBorder);
@@ -56,7 +57,8 @@ public class GameView {
     }
 
     private void onClickOrange() {
-        if (boardView.getGameState().sideOnTurn() == PlayingSide.BLUE)
+        if (boardView.getGameState().sideOnTurn() == PlayingSide.BLUE
+                || boardView.getGameState().result() == GameResult.VICTORY)
             return;
 
         orangeStack.setBorder(selectBorder);
