@@ -19,8 +19,4 @@ public class UnitView extends Pane {
 
     }
 
-//    private void removeUnitFromStack() {
-//        System.out.println("removing");
-//    }
-
 }

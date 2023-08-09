@@ -1,10 +1,8 @@
 package thedrake.ui;
 
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import org.w3c.dom.css.CSS2Properties;
 import thedrake.game_logic.GameResult;
 import thedrake.game_logic.GameState;
 import thedrake.game_logic.PlayingSide;
@@ -18,7 +16,6 @@ public class GameView {
     private final StackView orangeStack;
     private final StackView blueStack;
     private final BorderPane root;
-    private WhoseTurnView whoseTurnView;
 
     public GameView(GameState gameState) throws IOException {
 
@@ -34,7 +31,7 @@ public class GameView {
         orangeStack.setOnMouseClicked(e -> onClickOrange());
         root.setTop(orangeStack);
 
-        this.whoseTurnView = new WhoseTurnView();
+        WhoseTurnView whoseTurnView = new WhoseTurnView();
 
         boardView.setWhoseTurnView(whoseTurnView);
         boardView.setStackOrange(orangeStack);

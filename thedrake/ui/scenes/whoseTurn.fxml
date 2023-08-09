@@ -2,6 +2,7 @@
 
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="268.0" prefWidth="211.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="thedrake.ui.Controller">
    <children>
@@ -9,5 +10,8 @@
          <image>
             <Image url="@sword.png" />
          </image></ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="7.0" layoutY="261.0" stroke="BLACK" strokeType="INSIDE" width="211.0" />
+
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="ORANGE" height="7.0" stroke="BLACK" strokeType="INSIDE" width="211.0" />
    </children>
 </Pane>

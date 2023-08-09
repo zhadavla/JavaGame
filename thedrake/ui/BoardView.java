@@ -2,7 +2,6 @@ package thedrake.ui;
 
 import java.util.List;
 
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -86,40 +85,50 @@ public class BoardView extends GridPane implements TileViewContext {
             updateTiles();
         }
 
-        if (gameState.result() == GameResult.VICTORY) {
+        if (gameState.result() == GameResult.VICTORY
+        || gameState.result() == GameResult.DRAW) {
             showVictory();
         }
     }
 
     private void showVictory() {
-
-        if (gameState.sideOnTurn() == PlayingSide.ORANGE) {
-            for (Node node : getChildren()) {
-                if (node instanceof TileView tileView) {
-                    tileView.setStyle("-fx-background-color: #0058ff;");
+        if (gameState.result() == GameResult.VICTORY) {
+            if (gameState.sideOnTurn() == PlayingSide.ORANGE) {
+                for (Node node : getChildren()) {
+                    if (node instanceof TileView tileView) {
+                        tileView.setStyle("-fx-background-color: #0058ff;");
+                    }
+                }
+            } else {
+                for (Node node : getChildren()) {
+                    if (node instanceof TileView tileView) {
+                        tileView.setStyle("-fx-background-color: #ff8400;");
+                    }
                 }
             }
+            Label labelW = new Label("W");
+            Label labelI = new Label("I");
+            Label labelN = new Label("N");
+            Label label = new Label("!");
+            add(labelW, 1, 0);
+            add(labelI, 1, 1);
+            add(labelN, 1, 2);
+            add(label, 1, 3);
         } else {
             for (Node node : getChildren()) {
                 if (node instanceof TileView tileView) {
-                    tileView.setStyle("-fx-background-color: #ff8400;");
+                    tileView.setStyle("-fx-background-color: #3cff00;");
                 }
             }
+            Label labelW = new Label("D");
+            Label labelI = new Label("R");
+            Label labelN = new Label("A");
+            Label label = new Label("W");
+            add(labelW, 1, 0);
+            add(labelI, 1, 1);
+            add(labelN, 1, 2);
+            add(label, 1, 3);
         }
-        Label labelW = new Label("W");
-        Label labelI = new Label("I");
-        Label labelN = new Label("N");
-        Label label = new Label("!");
-        add(labelW, 1, 0);
-        add(labelI, 1, 1);
-        add(labelN, 1, 2);
-        add(label, 1, 3);
-    }
-
-
-    private void printText(int row, int column, String text) {
-        Label label = new Label(text);
-        add(label, column, row);
     }
 
     public void setStackBlue(StackView stackBlue) {

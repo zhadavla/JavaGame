@@ -2,31 +2,17 @@ package thedrake.ui;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import org.w3c.dom.events.Event;
 import thedrake.game_logic.PlayingSide;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 public class StackView extends HBox {
-    private List<UnitView> blueUnits;
-    private List<String> blueUnitsNames;
-    private List<String> orangeUnitsNames;
-
-    public List<String> getBlueUnitsNames() {
-
-        return blueUnitsNames;
-    }
-
-    public List<String> getOrangeUnitsNames() {
-        for (String s: orangeUnitsNames)
-            System.out.println(s);
-        return orangeUnitsNames;
-    }
+    private final List<UnitView> blueUnits;
+    private final List<String> blueUnitsNames;
+    private final List<String> orangeUnitsNames;
 
     private List<UnitView> orangeUnits;
     private final Border blackBorder = new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(3)));
@@ -58,15 +44,6 @@ public class StackView extends HBox {
         update(playingSide);
     }
 
-    private void select() {
-        if (!isSelected) {
-            setBorder(blackBorder);
-        } else {
-            setBorder(null);
-        }
-        isSelected = !isSelected;
-    }
-
     private void update(PlayingSide playingSide) {
         if (playingSide == PlayingSide.BLUE) {
             for (UnitView unitView : blueUnits) {
@@ -80,7 +57,6 @@ public class StackView extends HBox {
     }
 
     public void removePlaced(PlayingSide playingSide) {
-        System.out.println("in there");
         if (playingSide == PlayingSide.BLUE) {
             getChildren().remove(blueUnits.get(0));
             blueUnitsNames.remove(0);
