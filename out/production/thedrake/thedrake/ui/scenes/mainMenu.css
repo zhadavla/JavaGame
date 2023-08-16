@@ -1,0 +1,33 @@
+#theDrakeLabel {
+    -fx-font-size: 90px;
+    -fx-alignment: center;
+    -fx-font-family: "Arial", sans-serif;
+    -fx-text-fill: #eeeeee;
+}
+
+.root {
+    -fx-background-image: url("background.jpg");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+
+.button {
+    -fx-font-size: 35px;
+    -fx-alignment: center;
+    -fx-font-family: "Arial", sans-serif;
+    -fx-text-fill: #eeeee4;
+    -fx-background-color: transparent;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 10, 0, 0, 2);
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(to bottom, #ffb900, #ffb900);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 10), 20, 0.5, 0, 1);
+}
+
+.button:pressed {
+    -fx-background-color: linear-gradient(to bottom, #ffb900, #ffb900);
+    -fx-background-insets: 2px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 10), 20, 0.7, 0, 1);
+}

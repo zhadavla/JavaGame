@@ -1,0 +1,28 @@
+.vbox {
+    -fx-padding: 10px;
+    -fx-spacing: 10px;
+    -fx-alignment: center;
+}
+
+.button {
+    -fx-font-size: 20px;
+    -fx-alignment: center;
+    -fx-font-family: "Arial", sans-serif;
+    -fx-text-fill: #eeeee4;
+    -fx-background-color: transparent;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 10, 0, 0, 2);
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(to bottom, #ffb900, #ffb900);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 10), 20, 0.5, 0, 1);
+}
+
+.label {
+    -fx-font-size: 70px;
+    -fx-alignment: center;
+    -fx-font-family: "Arial", sans-serif;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: transparent;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 10, 0, 0, 2);
+}
