@@ -1,3 +1,5 @@
+The Drake game using **JavaFX** as my school project at FIT CTU. We worked on implementing the game logic throughout the semester, aiming to pass the tests using **JUnit**. The final task involved creating a graphical interface for the game. The game is designed for two human players competing against each other on a single computer. Below, you can find a description of the game in the Czech language.
+
 # The Drake - pravidla hry
 The Drake je desková hra pro dva hráče inspirovaná úspěšnou hrou The Duke. V podstatě jde o zjednodušenou verzi The Duke, která se hraje na menším hracím plánu s menším počtem figur a některá její pravidla jsou přizpůsobena tomu, aby se hra dobře programovala. The Drake má několik možných verzí podle různých úprav a rozšíření, o které je možné obohatit takzvanou základní verzi.
 
