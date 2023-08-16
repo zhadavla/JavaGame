@@ -3,7 +3,7 @@ The Drake game using **JavaFX** as my school project at FIT CTU. We worked on im
 # The Drake - pravidla hry
 The Drake je desková hra pro dva hráče inspirovaná úspěšnou hrou The Duke. V podstatě jde o zjednodušenou verzi The Duke, která se hraje na menším hracím plánu s menším počtem figur a některá její pravidla jsou přizpůsobena tomu, aby se hra dobře programovala. The Drake má několik možných verzí podle různých úprav a rozšíření, o které je možné obohatit takzvanou základní verzi.
 
-![image](https://github.com/zhadavla/JavaGame/assets/113200176/2232e0d7-55ce-4c9b-a9d2-3cf47a365d4e)
+![image](https://github.com/zhadavla/JavaGame/assets/113200176/b92fa418-ca98-48be-a897-2bdfec6caafd)
 
 Základní verze hry
 Základní verze hry The Drake se hraje na čtvercové desce rozdělené na 4×4 polí.
