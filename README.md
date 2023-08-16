@@ -1,6 +1,8 @@
 # The Drake - pravidla hry
 The Drake je desková hra pro dva hráče inspirovaná úspěšnou hrou The Duke. V podstatě jde o zjednodušenou verzi The Duke, která se hraje na menším hracím plánu s menším počtem figur a některá její pravidla jsou přizpůsobena tomu, aby se hra dobře programovala. The Drake má několik možných verzí podle různých úprav a rozšíření, o které je možné obohatit takzvanou základní verzi.
 
+![image](https://github.com/zhadavla/JavaGame/assets/113200176/ecc8aa29-a683-481e-8447-5a49f0ed5e28)
+
 Základní verze hry
 Základní verze hry The Drake se hraje na čtvercové desce rozdělené na 4×4 polí.
 
